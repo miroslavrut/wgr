@@ -11,7 +11,8 @@ puts ticket.performer
 
 or using send/respond_to?
 
-```
+
+
 ```
 if ticket.respond_to?(request)
  puts ticket.send(request)
