@@ -1,0 +1,11 @@
+### NOTES
+
+* _Stacklike module_- When an object is added to the stack the operation is handled by pushing the
+object onto the @stack array—that is, adding it to the end. (@stack is accessed
+through a call to the stack method, which ensures that it will be initialized to an
+empty array the first time an object is added.) Removing an object from the stack 
+involves popping an element from the array—that is, removing it from the end.
+
+* Stacklike thus implements stacklikeness by selectively deploying
+behaviors that already exist for Array objects: add an element to the end of the array,
+take an element off the end

@@ -1,16 +1,46 @@
-namespace :admin do
-  desc "Interactively delete all files in /tmp"
-  task :clean_tmp do
-    Dir["/tmp/*"].each do |f|
-      next unless File.file?(f)
-      print "Delete #{f}? "
-      answer = $stdin.gets
-      case answer
-      when /^y/
-        File.unlink(f)
-      when /^q/
-        break
-      end
+class Ticket
+  def initialize(venue,date)
+    @venue = venue
+    @date = date
+  end
+
+  def price
+    @price
+  end
+  def venue
+    @venue
+  end
+  def date
+    @date
+  end
+
+  def price=(amount)
+    if (amount * 100).to_i == amount * 100
+      @price = amount
+    else
+      puts "The price seems to be malformed"
     end
   end
- end
+
+  def discount(percent)
+    @price = @price * (100 - percent) / 100.0
+    return "%.2f." % @price
+  end
+end
+
+th = Ticket.new("Town Hall", "2013-11-12")
+th.price = 100
+
+puts "The ticket for #{th.venue} has been discounted 15% to $#{"%.2f." % th.discount(15)}"
+
+# allow both yy-mm-dd and yyyy-mm-dd
+class TravelAgentSession
+  def year=(y)
+    @year = y.to_i
+    if @year < 100
+      @year += 2000
+    end
+  end
+end
+
+# >> The ticket for Town Hall has been discounted 15% to $85.00.
